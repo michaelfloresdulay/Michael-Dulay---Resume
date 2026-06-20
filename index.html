@@ -1,0 +1,841 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Michael F. Dulay | Professional Biologist Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --primary: #1e3d33;       /* Deep Emerald / Lab Slate */
+            --accent: #2d8a6b;        /* Vibrant Bio-Green */
+            --dark: #111827;          /* Rich Charcoal */
+            --light: #f4f7f6;         /* Sophisticated Light Tinted Grey-Green */
+            --text-muted: #556b63;    /* Enhanced Contrast Muted Slate Green */
+            --border: #d2deda;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            /* Biotech / Cellular Mesh Background Pattern */
+            background-color: var(--light);
+            background-image: 
+                radial-gradient(circle at 50% 50%, rgba(45, 138, 107, 0.08) 2px, transparent 3px),
+                linear-gradient(to right, rgba(45, 138, 107, 0.03) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(45, 138, 107, 0.03) 1px, transparent 1px);
+            background-size: 32px 32px, 32px 32px, 32px 32px;
+            background-position: 0 0, 0 0, 0 0;
+            color: var(--dark);
+            line-height: 1.6;
+        }
+
+        /* --- Animations --- */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .animate-fade-in {
+            animation: fadeIn 1s ease-out forwards;
+        }
+
+        .animate-slide-up {
+            animation: fadeInUp 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+        }
+
+        /* --- Navigation --- */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(244, 247, 246, 0.92);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border);
+            z-index: 1000;
+            box-shadow: 0 4px 20px rgba(30, 61, 51, 0.05);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.25rem 2rem;
+        }
+
+        .logo {
+            font-weight: 700;
+            font-size: 1.25rem;
+            color: var(--primary);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 1.75rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+
+        /* --- Hero Section --- */
+        header {
+            padding: 10rem 2rem 6rem;
+            background: radial-gradient(circle at 80% 20%, rgba(45, 138, 107, 0.15) 0%, transparent 60%), 
+                        linear-gradient(180deg, rgba(255,255,255,0.85) 0%, rgba(244,247,246,0) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Decorative Cell Structure Accent Placement */
+        header::before {
+            content: '';
+            position: absolute;
+            top: 15%;
+            left: -5%;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(rgba(45, 138, 107, 0.05) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        .hero-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column-reverse;
+            align-items: center;
+            gap: 4rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        @media (min-width: 768px) {
+            .hero-container {
+                flex-direction: row;
+                justify-content: space-between;
+            }
+        }
+
+        .hero-text {
+            flex: 1;
+            opacity: 0;
+        }
+
+        .hero-text h1 {
+            font-size: 3.5rem;
+            color: var(--primary);
+            line-height: 1.1;
+            margin-bottom: 1rem;
+            letter-spacing: -1px;
+        }
+
+        .hero-text h2 {
+            font-size: 1.6rem;
+            color: var(--accent);
+            font-weight: 600;
+            margin-bottom: 1.75rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .hero-text p {
+            color: var(--dark);
+            opacity: 0.85;
+            font-size: 1.15rem;
+            margin-bottom: 2.25rem;
+            max-width: 600px;
+        }
+
+        .hero-avatar {
+            width: 300px;
+            height: 300px;
+            border-radius: 24px;
+            overflow: hidden;
+            border: 6px solid #fff;
+            box-shadow: 0 30px 60px -15px rgba(30, 61, 51, 0.2), 0 15px 30px -10px rgba(0, 0, 0, 0.1);
+            opacity: 0;
+            transform: rotate(2deg);
+            transition: var(--transition);
+        }
+
+        .hero-avatar:hover {
+            transform: rotate(0deg) scale(1.02);
+        }
+
+        .hero-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .btn-container {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.65rem;
+            padding: 0.85rem 1.75rem;
+            border-radius: 8px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: var(--transition);
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(30, 61, 51, 0.1);
+        }
+
+        .btn-primary {
+            background-color: var(--primary);
+            color: #fff;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--accent);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(45, 138, 107, 0.3);
+        }
+
+        /* --- Section Styling --- */
+        section {
+            padding: 6rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .section-title {
+            font-size: 2.2rem;
+            color: var(--primary);
+            margin-bottom: 3.5rem;
+            position: relative;
+            display: inline-block;
+            letter-spacing: -0.5px;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 60px;
+            height: 4px;
+            background-color: var(--accent);
+            border-radius: 2px;
+        }
+
+        /* --- Education & Experience Layouts --- */
+        .content-card {
+            background: rgba(255, 255, 255, 0.85);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 2.5rem;
+            margin-bottom: 2.5rem;
+            backdrop-filter: blur(8px);
+            box-shadow: 0 10px 30px -10px rgba(30, 61, 51, 0.04);
+            transition: var(--transition);
+        }
+
+        .content-card:hover {
+            transform: translateY(-4px);
+            background: #ffffff;
+            border-color: var(--accent);
+            box-shadow: 0 20px 40px -15px rgba(30, 61, 51, 0.08);
+        }
+
+        .card-header-main {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-bottom: 1.25rem;
+        }
+
+        .content-card h3 {
+            font-size: 1.4rem;
+            color: var(--primary);
+        }
+
+        .institution {
+            color: var(--accent);
+            font-weight: 600;
+            font-size: 1.1rem;
+            margin-top: 0.25rem;
+        }
+
+        .date-badge {
+            background: var(--primary);
+            color: #fff;
+            padding: 0.35rem 1rem;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+
+        .thesis-box {
+            margin-top: 1.5rem;
+            padding: 1.5rem;
+            background: linear-gradient(90deg, rgba(45, 138, 107, 0.08) 0%, rgba(255,255,255,0) 100%);
+            border-left: 4px solid var(--accent);
+            border-radius: 0 12px 12px 0;
+            font-size: 1rem;
+        }
+
+        .content-card ul {
+            padding-left: 1.5rem;
+            color: var(--dark);
+            opacity: 0.9;
+            font-size: 1rem;
+            margin-top: 1rem;
+        }
+
+        .content-card li {
+            margin-bottom: 0.85rem;
+            position: relative;
+        }
+
+        /* --- Skills & Image Galleries --- */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 3.5rem;
+        }
+
+        .skill-category-block {
+            background: rgba(255, 255, 255, 0.8);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 2.5rem;
+            backdrop-filter: blur(8px);
+        }
+
+        .category-header {
+            display: flex;
+            align-items: center;
+            gap: 0.85rem;
+            font-size: 1.5rem;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            border-bottom: 2px solid var(--border);
+            padding-bottom: 1rem;
+        }
+
+        .category-header i {
+            color: var(--accent);
+        }
+
+        .image-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            gap: 1.25rem;
+            margin-top: 1.5rem;
+        }
+
+        .gallery-item {
+            position: relative;
+            border-radius: 12px;
+            overflow: hidden;
+            aspect-ratio: 4 / 3;
+            background: #eaeaea;
+            border: 4px solid #fff;
+            box-shadow: 0 8px 24px rgba(30, 61, 51, 0.06);
+            transition: var(--transition);
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.03) translateY(-4px);
+            border-color: var(--accent);
+            box-shadow: 0 16px 32px rgba(30, 61, 51, 0.15);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .image-caption {
+            display: none;
+        }
+
+        .skills-pills-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.85rem;
+            margin-top: 1rem;
+        }
+
+        .skill-pill {
+            background: #fff;
+            color: var(--primary);
+            padding: 0.6rem 1.2rem;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            border: 1px solid var(--border);
+            box-shadow: 0 2px 6px rgba(30, 61, 51, 0.02);
+            transition: var(--transition);
+        }
+
+        .skill-pill:hover {
+            border-color: var(--accent);
+            background-color: rgba(45, 138, 107, 0.05);
+            transform: translateY(-1px);
+        }
+
+        /* --- Trainings & Certifications Grid --- */
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+            gap: 1.75rem;
+        }
+
+        .info-card {
+            background: rgba(255, 255, 255, 0.85);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1.75rem;
+            display: flex;
+            gap: 1.25rem;
+            align-items: flex-start;
+            backdrop-filter: blur(8px);
+            transition: var(--transition);
+        }
+
+        .info-card:hover {
+            border-color: var(--accent);
+            background: #fff;
+            transform: translateY(-3px);
+            box-shadow: 0 12px 24px rgba(45, 138, 107, 0.08);
+        }
+
+        .info-card i {
+            font-size: 1.5rem;
+            color: var(--accent);
+            background: rgba(45, 138, 107, 0.1);
+            padding: 0.85rem;
+            border-radius: 10px;
+            flex-shrink: 0;
+        }
+
+        .info-card h4 {
+            color: var(--primary);
+            margin-bottom: 0.35rem;
+            font-size: 1.1rem;
+            line-height: 1.3;
+        }
+
+        .info-card p {
+            color: var(--dark);
+            opacity: 0.8;
+            font-size: 0.95rem;
+        }
+
+        /* --- Footer Section --- */
+        footer {
+            background-color: var(--primary);
+            background-image: radial-gradient(circle at 50% 120%, rgba(45, 138, 107, 0.3) 0%, transparent 60%);
+            color: #fff;
+            padding: 6rem 2rem;
+            text-align: center;
+            position: relative;
+            border-top: 4px solid var(--accent);
+        }
+
+        .footer-container h3 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+        }
+
+        .footer-contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 1.25rem;
+            font-size: 1.35rem;
+            color: rgba(255, 255, 255, 0.9);
+            max-width: 500px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 2rem;
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .footer-contact-info p {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .footer-contact-info a {
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 700;
+            transition: var(--transition);
+        }
+
+        .footer-contact-info a:hover {
+            color: #fff;
+            text-decoration: underline;
+        }
+
+        /* --- Scroll View Animations --- */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="nav-container">
+            <a href="#" class="logo"><i class="fa-solid fa-dna"></i> Michael F. Dulay</a>
+            <ul class="nav-links">
+                <li><a href="#about">About</a></li>
+                <li><a href="#education">Education</a></li>
+                <li><a href="#experience">Work Experience</a></li>
+                <li><a href="#trainings">Trainings</a></li>
+                <li><a href="#skills">Lab Skills & Images</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <header id="about">
+        <div class="hero-container">
+            <div class="hero-text animate-slide-up" style="animation-delay: 0.2s;">
+                <h1>MICHAEL F. DULAY</h1>
+                <h2><i class="fa-solid fa-microscope" style="font-size: 1.2rem;"></i> Biologist & Research Specialist</h2>
+                <h3 style="color: var(--primary); font-size: 1.1rem; margin-top: 1.5rem; text-transform: uppercase; letter-spacing: 1px;">Career Objectives</h3>
+                <p>Dedicated and adaptable Biologist seeking a position in a dynamic and innovative organization. Eager to apply strong research, analytical, and problem-solving skills to contribute to meaningful projects and grow professionally in a science-related or any field.</p>
+                <div class="btn-container">
+                    <a href="Resume - Michael Dulay.pdf" download class="btn btn-primary">
+                        <i class="fa-solid fa-file-arrow-down"></i> Download Resume
+                    </a>
+                </div>
+            </div>
+            <div class="hero-avatar animate-fade-in" style="animation-delay: 0.4s;">
+                <img src="Profile.jpg" alt="Profile Picture">
+            </div>
+        </div>
+    </header>
+
+    <section id="education" class="reveal">
+        <h3 class="section-title">Education</h3>
+        
+        <div class="content-card">
+            <div class="card-header-main">
+                <div>
+                    <h3>Master of Science in Biology</h3>
+                    <div class="institution">Central Luzon State University</div>
+                </div>
+                <span class="date-badge">Aug 2023 - Present</span>
+            </div>
+            <div class="thesis-box">
+                <strong>Thesis Title:</strong> "Molecular-Assisted Identification, Chemical Composition, and Biological Activities of Selected Marine Microalgae and Macroalgae from Luzon Island, Philippines"
+            </div>
+        </div>
+
+        <div class="content-card">
+            <div class="card-header-main">
+                <div>
+                    <h3>Bachelor of Science in Biology</h3>
+                    <div class="institution">Central Luzon State University</div>
+                </div>
+                <span class="date-badge">May 2014 - May 2016</span>
+            </div>
+            <div class="thesis-box">
+                <strong>Thesis Title:</strong> "Mycelial Growth Performance and Mycoaccumulation Abilities of the Three Volvariella volvacea strains in Arsenic-Contaminated Rice Straw"
+            </div>
+        </div>
+    </section>
+
+    <section id="experience" class="reveal">
+        <h3 class="section-title">Work Experience</h3>
+
+        <div class="content-card">
+            <div class="card-header-main">
+                <div>
+                    <h3>Research and Development Specialist II</h3>
+                </div>
+                <span class="date-badge">May 2023 - Aug 2023</span>
+            </div>
+            <ul>
+                <li>Executed laboratory-scale experiments for new product formulations as directed by the R&D Head.</li>
+                <li>Conducted studies for product improvement, cost-saving measures, and process enhancements for existing products.</li>
+                <li>Developed and created raw material specification documents for all approved spices materials.</li>
+                <li>Performed shelf-life studies to establish and validate standards for finished product packaging.</li>
+                <li>Facilitated comprehensive sensory evaluations of improved products, managing all stages from sample preparation to statistical analysis (using statistics) and final report generation.</li>
+                <li>Conducted raw material evaluations and product applications for submitted samples to ensure quality standards.</li>
+                <li>Performed Physicochemical and microbial analysis for the products and raw materials.</li>
+                <li>Presented finished product samples to superiors for initial evaluation.</li>
+                <li>Managed the precise preparation and weighing of ingredients and meat materials required for all laboratory-scale experiments and monitored all phases of production trial runs, including chopping, stuffing, cooking, and packing, while performing critical data gathering.</li>
+                <li>Conducted cost analysis.</li>
+                <li>Served as Document controller of the R&D Department.</li>
+            </ul>
+        </div>
+
+        <div class="content-card">
+            <div class="card-header-main">
+                <div>
+                    <h3>Sales and Admin Assistant</h3>
+                </div>
+                <span class="date-badge">July 2020 - April 2023</span>
+            </div>
+            <ul>
+                <li>Created and maintained electronic quotations, sales records, and customer databases, ensuring data integrity and easy retrieval.</li>
+                <li>Reconciled daily sales reports and cash inventory, identifying and resolving discrepancies to maintain 100% financial accuracy.</li>
+                <li>Managed stock levels and inventory tracking, updating records in real-time to prevent overselling and stockouts.</li>
+                <li>Managed end-to-end order processing for Shopee and Lazada platforms, handling 50+ orders weekly from placement to fulfillment.</li>
+                <li>Updated and optimized product listings with accurate descriptions, pricing, and images, improving visibility and customer trust.</li>
+                <li>Tracked order status and shipping updates, proactively communicating with customers to ensure satisfaction.</li>
+                <li>Executed Facebook marketing campaigns and managed community engagement, responding to inquiries within 24 hours.</li>
+            </ul>
+        </div>
+    </section>
+
+    <section id="trainings" class="reveal">
+        <h3 class="section-title">Trainings Attended</h3>
+        <div class="info-grid">
+            <div class="info-card">
+                <i class="fa-solid fa-dna"></i>
+                <div>
+                    <h4>Workshops on Nucleotide Sequencing and Identification of Mushrooms</h4>
+                    <p>Flora and Fauna Analytical Lab</p>
+                    <p style="font-size: 0.8rem; margin-top: 0.4rem; font-weight: 700; color: var(--accent); text-transform: uppercase;"><i class="fa-regular fa-calendar-days"></i> 1/14-16/2024</p>
+                    <p style="font-size: 0.9rem; margin-top: 0.5rem; opacity: 0.85;">DNA Extraction, PCR, Designing Primers, Construct Phylogeny, Align DNA sequence</p>
+                </div>
+            </div>
+            <div class="info-card">
+                <i class="fa-solid fa-circle-nodes"></i>
+                <div>
+                    <h4>Identification of Mitosporic Fungi</h4>
+                    <p>Flora and Fauna Analytical Lab</p>
+                    <p style="font-size: 0.8rem; margin-top: 0.4rem; font-weight: 700; color: var(--accent); text-transform: uppercase;"><i class="fa-regular fa-calendar-days"></i> 2/19-21/2024</p>
+                    <p style="font-size: 0.9rem; margin-top: 0.5rem; opacity: 0.85;">Identify and classify fungi and culture fungi</p>
+                </div>
+            </div>
+            <div class="info-card">
+                <i class="fa-solid fa-flask-vial"></i>
+                <div>
+                    <h4>On-the-Job Training: Preclinical Assay Systems</h4>
+                    <p>Unilab Inc.</p>
+                    <p style="font-size: 0.8rem; margin-top: 0.4rem; font-weight: 700; color: var(--accent); text-transform: uppercase;"><i class="fa-regular fa-calendar-days"></i> 10/11-21/2021</p>
+                    <p style="font-size: 0.9rem; margin-top: 0.5rem; opacity: 0.85;">Animal handling, in vivo safety and efficacy tests, toxicity testing, efficacy testing, dose selection, sample preparation, Acute Oral Toxicity Test, Eye Irritation / Corrosion Test in lab animals. Basic Techniques for Cell Culture, including aseptic technique, computing cell counts, and cell subculturing.</p>
+                </div>
+            </div>
+            <div class="info-card">
+                <i class="fa-solid fa-computer"></i>
+                <div>
+                    <h4>Training in Molecular Biology & Phylogenetics</h4>
+                    <p>PGC Mindanao</p>
+                    <p style="font-size: 0.8rem; margin-top: 0.4rem; font-weight: 700; color: var(--accent); text-transform: uppercase;"><i class="fa-regular fa-calendar-days"></i> 9/26-27/2021</p>
+                    <p style="font-size: 0.9rem; margin-top: 0.5rem; opacity: 0.85;">Primer design, DNA extraction, genome sequencing, and constructing a phylogenetic tree using MEGA software</p>
+                </div>
+            </div>
+            <div class="info-card">
+                <i class="fa-solid fa-shrimp"></i>
+                <div>
+                    <h4>Training on Various Aquaculture and Post-Harvest Technologies</h4>
+                    <p>BFAR-NFITDC</p>
+                    <p style="font-size: 0.8rem; margin-top: 0.4rem; font-weight: 700; color: var(--accent); text-transform: uppercase;"><i class="fa-regular fa-calendar-days"></i> 8/19/2021 - 9/2/2021</p>
+                    <p style="font-size: 0.9rem; margin-top: 0.5rem; opacity: 0.85;">Farming and harvesting prawn, tilapia, bangus, hito, sea cucumber</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="certifications" class="reveal">
+        <h3 class="section-title">Eligibility / Certification</h3>
+        <div class="info-grid" style="grid-template-columns: 1fr;">
+            <div class="info-card" style="border-left: 4px solid var(--accent); background: #fff;">
+                <i class="fa-solid fa-stamp"></i>
+                <div>
+                    <h4 style="font-size: 1.2rem; font-weight: 700;">Career Service Professional / Second Level Eligibility</h4>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="skills" class="reveal">
+        <h3 class="section-title">Technical Skills & Lab Gallery</h3>
+        
+        <div style="margin-bottom: 3rem; background: rgba(255, 255, 255, 0.85); border: 1px solid var(--border); border-radius: 16px; padding: 2.5rem; backdrop-filter: blur(8px);">
+            <h3 style="color: var(--primary); margin-bottom: 1rem;"><i class="fa-solid fa-gears" style="color: var(--accent); margin-right: 0.5rem;"></i> Core & Technical Competencies</h3>
+            <div class="skills-pills-container">
+                <span class="skill-pill"><i class="fa-solid fa-check text-accent"></i> Molecular (DNA Extraction, PCR, Phylogenetic Analysis)</span>
+                <span class="skill-pill"><i class="fa-solid fa-check text-accent"></i> Chemical Analysis</span>
+                <span class="skill-pill"><i class="fa-solid fa-check text-accent"></i> Basic Microbiological Techniques</span>
+                <span class="skill-pill"><i class="fa-solid fa-check text-accent"></i> Research and Report Writing</span>
+                <span class="skill-pill"><i class="fa-solid fa-check text-accent"></i> Good Laboratory Practices</span>
+                <span class="skill-pill"><i class="fa-solid fa-check text-accent"></i> Project Management</span>
+                <span class="skill-pill"><i class="fa-solid fa-check text-accent"></i> Microsoft Office</span>
+                <span class="skill-pill"><i class="fa-solid fa-check text-accent"></i> Canva</span>
+                <span class="skill-pill"><i class="fa-solid fa-check text-accent"></i> Adobe</span>
+                <span class="skill-pill"><i class="fa-solid fa-check text-accent"></i> Computer Literate</span>
+                <span class="skill-pill"><i class="fa-solid fa-check text-accent"></i> Microscopy</span>
+                <span class="skill-pill"><i class="fa-solid fa-check text-accent"></i> Languages: English, Filipino</span>
+            </div>
+        </div>
+        
+        <div class="skills-grid">
+            <div class="skill-category-block">
+                <div class="category-header">
+                    <i class="fa-solid fa-helix"></i>
+                    <h3>Molecular Assays</h3>
+                </div>
+                <div class="image-gallery">
+                    <div class="gallery-item">
+                        <img src="Molecular 1.jpeg" alt="Lab Work">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="Molecular 2.jpeg" alt="Lab Work">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="Molecular 3.jpeg" alt="Lab Work">
+                    </div>
+                </div>
+            </div>
+
+            <div class="skill-category-block">
+                <div class="category-header">
+                    <i class="fa-solid fa-flask"></i>
+                    <h3>Chemical Analysis</h3>
+                </div>
+                <div class="image-gallery">
+                    <div class="gallery-item">
+                        <img src="Chemistry 1.jpeg" alt="Lab Work">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="Chemistry 2.JPG" alt="Lab Work">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="Chemistry 3.jpeg" alt="Lab Work">
+                    </div>
+                </div>
+            </div>
+
+            <div class="skill-category-block">
+                <div class="category-header">
+                    <i class="fa-solid fa-bacteria"></i>
+                    <h3>Basic Microbiological Techniques & Microscopy</h3>
+                </div>
+                <div class="image-gallery">
+                    <div class="gallery-item">
+                        <img src="Microbiology 1 .jpeg" alt="Lab Work">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="Microbiology 2.jpeg" alt="Lab Work">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="Microbiology 3.jpeg" alt="Lab Work">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="Microbiology 4.jpeg" alt="Lab Work">
+                    </div>
+                </div>
+            </div>
+
+            <div class="skill-category-block">
+                <div class="category-header">
+                    <i class="fa-solid fa-seedling"></i>
+                    <h3>Phycology Culturing & Isolation Systems</h3>
+                </div>
+                <div class="image-gallery">
+                    <div class="gallery-item">
+                        <img src="Phycology 1.jpeg" alt="Lab Work">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="Phycology 2.jpeg" alt="Lab Work">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="Phycology 3.jpeg" alt="Lab Work">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="Phycology 4.jpeg" alt="Lab Work">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-container">
+            <h3>Lets Connect</h3>
+            <div class="footer-contact-info">
+                <p><i class="fa-solid fa-envelope" style="color: var(--accent);"></i> Email: <a href="mailto:michaelfloresdulay@gmail.com">michaelfloresdulay@gmail.com</a></p>
+                <p><i class="fa-solid fa-phone" style="color: var(--accent);"></i> Phone: <a href="tel:+639950245384">+63 995 0245 384</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function revealElements() {
+            const reveals = document.querySelectorAll(".reveal");
+            for (let i = 0; i < reveals.length; i++) {
+                const windowHeight = window.innerHeight;
+                const elementTop = reveals[i].getBoundingClientRect().top;
+                const elementVisible = 100;
+
+                if (elementTop < windowHeight - elementVisible) {
+                    reveals[i].classList.add("active");
+                }
+            }
+        }
+
+        window.addEventListener("scroll", revealElements);
+        revealElements();
+    </script>
+</body>
+</html>
